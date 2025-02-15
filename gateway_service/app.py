@@ -55,10 +55,6 @@ async def get_data():
     logger.error("No storage services are currently available.")
     raise HTTPException(status_code=503, detail="No storage services available")
 
-
-
-
-
 if __name__ == "__main__":
     logger.info("Starting Gateway service")
     uvicorn.run(app, host="0.0.0.0", port=8000, log_level="info")
