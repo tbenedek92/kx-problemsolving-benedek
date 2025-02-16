@@ -1,0 +1,33 @@
+
+services:
+  gateway_service:
+    build: ./gateway_service
+    ports:
+      - "8000:8000"
+    depends_on:
+      - storage_service_1
+      - storage_service_2
+      - storage_service_3
+    environment:
+      - STORAGE_SERVICES=storage_service_1:8001,storage_service_2:8001,storage_service_3:8001
+
+  storage_service_1:
+    build: ./storage_service
+    ports:
+      - "8001:8001"
+    environment:
+      - SERVICE_NAME=storage_service_1
+
+  storage_service_2:
+    build: ./storage_service
+    ports:
+      - "8002:8001"
+    environment:
+      - SERVICE_NAME=storage_service_2
+
+  storage_service_3:
+    build: ./storage_service
+    ports:
+      - "8003:8001"
+    environment:
+      - SERVICE_NAME=storage_service_3
